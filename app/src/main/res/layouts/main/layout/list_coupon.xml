@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/linearLayout_coupon"
+    android:weightSum="1">
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/coupon_stamp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/tv_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dip"
+        android:layout_marginLeft="10dip"
+        android:layout_gravity="center" />
+
+    <GridView
+        android:layout_width="304dp"
+        android:layout_height="70dp"
+        android:numColumns="6"
+        android:padding="1dp"
+        android:layout_margin="1dp"
+        android:id="@+id/gv_child"
+        android:layout_weight="1.13">
+    </GridView>
+
+</LinearLayout>
