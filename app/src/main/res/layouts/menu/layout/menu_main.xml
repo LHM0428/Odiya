@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -8,7 +7,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="nhm.com.odiya.menu.MenuActivity">
+
+    >
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
         android:scrollIndicators="none"
         android:scrollbars="none">
 
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -26,12 +28,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/coffeeLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton7"
+                    android:id="@+id/menuImg1"
                     android:src="@drawable/menu_coffee" />
 
                 <TextView
@@ -48,12 +51,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/beverageLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/menuImg2"
                     android:src="@drawable/menu_cup" />
 
                 <TextView
@@ -71,12 +75,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/adeLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/menuImg3"
                     android:src="@drawable/menu_cup" />
 
                 <TextView
@@ -93,12 +98,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/bubbleLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/menuImg4"
                     android:src="@drawable/menu_flatchino" />
 
                 <TextView
@@ -115,12 +121,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/teaLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/menuImg5"
                     android:src="@drawable/menu_cup1" />
 
                 <TextView
@@ -138,12 +145,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/flatLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/menuImg6"
                     android:src="@drawable/menu_flatchino" />
 
                 <TextView
@@ -160,12 +168,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:id="@+id/shakeLayout">
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton6"
+                    android:id="@+id/menuImg8"
                     android:src="@drawable/menu_flatchino" />
 
                 <TextView
