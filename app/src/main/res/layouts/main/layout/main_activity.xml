@@ -24,88 +24,14 @@
             android:src="@drawable/event_2"/>
 
     </ViewFlipper>
+    <ExpandableListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/elv_coupon"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/vf_event"
+        android:layout_above="@+id/bt_login" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tb_coupon"
-        android:stretchColumns="0,1,2,3"
-        android:layout_below="@+id/bt_coupon"
-        android:layout_alignParentStart="true">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </TableRow>
-
-        <TableRow>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-
-        </TableRow>
-        <TableRow>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/coupon_x"
-                />
-
-        </TableRow>
-    </TableLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -119,18 +45,95 @@
         android:textColor="#ffffff"
         android:background="@color/mainTheme"/>
 
-    <Button
+</RelativeLayout>
+
+<!--
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="***님의 쿠폰 현황 : #개"
+android:textSize="20dp"
+android:textStyle="bold"
+android:id="@+id/bt_coupon"
+android:textColor="#ffffff"
+android:background="@color/mainTheme"
+android:layout_column="2"
+android:layout_alignParentStart="true"
+android:layout_below="@+id/vf_event"
+android:layout_alignParentEnd="true" />
+
+<TableLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/tb_coupon"
+android:stretchColumns="0,1,2,3"
+android:layout_below="@+id/bt_coupon"
+android:layout_alignParentStart="true">
+
+
+<TableRow>
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="***님의 쿠폰 현황 : #개"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:id="@+id/bt_coupon"
-        android:textColor="#ffffff"
-        android:background="@color/mainTheme"
-        android:layout_column="2"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/vf_event"
-        android:layout_alignParentEnd="true" />
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
 
-</RelativeLayout>
+</TableRow>
+<TableRow>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coupon_x"
+        />
+</TableRow>
+</TableLayout>-->
