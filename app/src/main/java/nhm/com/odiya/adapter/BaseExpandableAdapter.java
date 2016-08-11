@@ -30,6 +30,7 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
 
     class ViewHolder{
         public ImageView iv_image;
+        public ImageView iv_arrow;
         public LinearLayout linearLayout_coupon;
         public TextView tv_groupName;
         public GridView gv_child;
@@ -88,6 +89,7 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
             viewHolder.tv_groupName = (TextView) v.findViewById(R.id.tv_group);
             viewHolder.linearLayout_coupon = (LinearLayout) v.findViewById(R.id.linearLayout_coupon);
             viewHolder.iv_image = (ImageView) v.findViewById(R.id.iv_image);
+            viewHolder.iv_arrow = (ImageView) v.findViewById(R.id.iv_arrow);
             viewHolder.iv_image.setImageResource(R.drawable.coffee_cup);
             v.setTag(viewHolder);
         } else {
@@ -95,9 +97,11 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         if(isExpanded){
+            viewHolder.iv_arrow.setImageResource(R.drawable.up_arrow);
             viewHolder.linearLayout_coupon.setBackgroundColor(Color.WHITE);
             viewHolder.tv_groupName.setTextColor((v.getResources().getColor(R.color.mainTheme)));
         }else{
+            viewHolder.iv_arrow.setImageResource(R.drawable.down_arrow);
             viewHolder.linearLayout_coupon.setBackgroundColor(v.getResources().getColor(R.color.mainTheme));
             viewHolder.tv_groupName.setTextColor(Color.WHITE);
         }
