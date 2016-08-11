@@ -5,13 +5,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteStatement;
 import android.widget.Toast;
+
+import nhm.com.odiya.DTO.UserDTO;
 
 //DB를 총괄관리
 public class DBManager {
 
     // DB관련 상수 선언
-    private static final String dbName = "korea1.db";
+    private static final String dbName = "korea2.db";
     private static final String tableName = "cafe_user_test";
     public static final int dbVersion = 1;
 
@@ -41,10 +44,10 @@ public class DBManager {
         // 생성된 DB가 없을 경우에 한번만 호출됨
         @Override
         public void onCreate(SQLiteDatabase db) {
-            // String dropSql = "drop table if exists " + tableName;
-            // db.execSQL(dropSql);
+            String dropSql = "drop table if exists " + tableName;
+            db.execSQL(dropSql);
             System.out.println("onCreate");
-            String createSql = "create table " + tableName + " ( id TEXT , pass TEXT )";
+            String createSql = "create table " + tableName + " ( id TEXT , pass TEXT , tel TEXT, Birth TEXT, gender TEXT)";
             db.execSQL(createSql);
             Toast.makeText(context, "DB is opened", Toast.LENGTH_SHORT).show();
         }
@@ -55,29 +58,42 @@ public class DBManager {
         }
     }
 
-    public void insertUser(){
-        String sql = "insert into "+tableName+" values ('namni','1234');";
+    public void insertUser(UserDTO dto){
+        String sql = "insert into "+tableName+" values ('"+dto.getId()+"','"+dto.getPass()+"','"+dto.getTel()+"','"+dto.getBirth()+"', '"+dto.getGender()+"');";
+      //  String sql = "insert into "+tableName+" values ('"+dto.getId()+"','"+dto.getPass()+"');";
         db.execSQL(sql);
         Toast.makeText(context, "insert", Toast.LENGTH_SHORT).show();
     }
 
 
 
-    public String printData(){
-
-        //db = getReadableDatabase();
+    public UserDTO printData(String id, String pass){
+        UserDTO userDTO=null;
         String str="";
 
-        Cursor cursor = db.rawQuery("select * from cafe_user_test;",null);
+        /*SQLiteStatement stmt = db.compileStatement("select * from where id=? and pass=?");
+        stmt.bindString(1,"namni");
+        stmt.bindString(2,"1234");
+        stmt.execute();
+ */
+
+        String table = "cafe_user_test";
+        String[] columnsToReturn = { "id", "pass" }; //null=*
+        String selection = "id=? AND pass=?";
+        //String[] selectionArgs = { id  }; // matched to "?" in selection
+       // Cursor cursor = db.query(table, columnsToReturn, null, null, null, null, null);
+       Cursor cursor = db.query( table , null, selection, new String[] { id, pass } , null, null, null);
+
+        /*String sql = "select * from "+tableName+" where id=? and pass=?";
+        Cursor cursor = db.rawQuery(sql, new String[] {id ,pass });
+*/
 
         while(cursor.moveToNext()){
-
-            String id = cursor.getString(0);
-            String pass = cursor.getString(1);
-
-            System.out.println("id : "+id +" , pass : "+pass );
-            str +="아이디는 "+id+"이고 비밀번호는 "+pass+"";
+            userDTO = new UserDTO();
+            userDTO.setId(cursor.getString(0));
+            userDTO.setPass(cursor.getString(1));
+           // str +="아이디는 "+id+"이고 비밀번호는 "+pass+"";
         }
-        return str;
+        return userDTO;
     }
 }
