@@ -18,13 +18,14 @@ import nhm.com.odiya.adapter.MenuExpadableAdapter;
 
 public class MenuActivity extends AppCompatActivity  {
 
-    TextView menuCoffee,menuBeverage, menuFlatccino, menuAde, menuTea, menuBubble, menuShake,menuTv;
+    TextView menuCoffee,menuBeverage, menuFlatccino, menuAde, menuTea, menuBubble, menuShake,menuTv,textView;
     LinearLayout coffeeLayout,beverageLayout,adeLayout;
 
     LinearLayout contentLayout;
 
 
     private ArrayList<String> groupList=null;
+    private ArrayList<String[]> menuList = null;
     private ArrayList<ArrayList<LinearLayout>> childList=null;
     private ArrayList<LinearLayout> childListContent=null;
     private ExpandableListView listView;
@@ -51,17 +52,21 @@ public class MenuActivity extends AppCompatActivity  {
         contentLayout = (LinearLayout) findViewById(R.id.contentLayout);
 
         groupList = new ArrayList<String>();
+        menuList = new ArrayList<String[]>();
         childList = new ArrayList<ArrayList<LinearLayout>>();
         childListContent = new ArrayList<LinearLayout>();
 
         groupList.add("Coffee");
         String[] coffeeMenu = {"아메리카노","카페라떼","카푸치노","카페모카","캬라멜 마끼아또","민트 모카","시나몬 모카"};
         for(int i=0;i<coffeeMenu.length;i++){
-            childListContent.add(contentLayout);
+            childListContent.add(contentLayout);  //--> 7번 ㅇㅋㅋ
         }
         childList.add(childListContent);
+        menuList.add(coffeeMenu);
 
         groupList.add("Beverage");
+
+
         groupList.add("Flatccino");
         groupList.add("BubbleTea");
         groupList.add("Shake");
