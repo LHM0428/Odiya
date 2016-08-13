@@ -3,6 +3,7 @@ package nhm.com.odiya.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -10,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,11 +48,13 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
+        System.out.println("getGroupCount");
         return groupList.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        System.out.println("getChildrenCount");
         return 1;
     }
 
@@ -85,12 +89,11 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
 
         if(v==null){
             viewHolder = new ViewHolder();
-            v = inflater.inflate(R.layout.list_coupon, parent, false);
+            v = inflater.inflate(R.layout.group_coupon, parent, false);
             viewHolder.tv_groupName = (TextView) v.findViewById(R.id.tv_group);
             viewHolder.linearLayout_coupon = (LinearLayout) v.findViewById(R.id.linearLayout_coupon);
             viewHolder.iv_image = (ImageView) v.findViewById(R.id.iv_image);
             viewHolder.iv_arrow = (ImageView) v.findViewById(R.id.iv_arrow);
-            viewHolder.iv_image.setImageResource(R.drawable.coffee_cup);
             v.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) v.getTag();
@@ -122,6 +125,7 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
             viewHolder = (ViewHolder)v.getTag();
         }
         viewHolder.gv_child.setAdapter(new ImageAdapter(mContext,j));
+
         return v;
     }
 

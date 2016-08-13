@@ -11,20 +11,20 @@ import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 
 import nhm.com.odiya.R;
+import nhm.com.odiya.cafeFind.CafeFindActivity;
 import nhm.com.odiya.login.LoginActivity;
 import nhm.com.odiya.adapter.BaseExpandableAdapter;
+import nhm.com.odiya.menu.MenuActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     ViewFlipper vf_event;
-    TableLayout tb_coupon;
-    Button bt_coupon;
-    boolean IsClosed = true;
     private ArrayList<String> mGroupList = null;
     private ExpandableListView mListView;
     private GridView gv_child;
@@ -51,23 +51,6 @@ public class MainActivity extends AppCompatActivity {
         // 1.5초 간격으로 ViewFilpper의 view를 자동 교체
         vf_event.setFlipInterval(1500);
         vf_event.startFlipping();
- /*
-        tb_coupon = (TableLayout) findViewById(R.id.tb_coupon);
-        bt_coupon = (Button) findViewById(R.id.bt_coupon);
-        tb_coupon.setVisibility(View.INVISIBLE);
-
-       bt_coupon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(IsClosed){
-                    tb_coupon.setVisibility(View.VISIBLE);
-                    IsClosed = false;
-                }else{
-                    tb_coupon.setVisibility(View.INVISIBLE);
-                    IsClosed = true;
-                }
-            }
-        });*/
         inItElv(6);
     }
 
@@ -80,12 +63,28 @@ public class MainActivity extends AppCompatActivity {
 
 
         mListView.setAdapter(new BaseExpandableAdapter(mGroupList,gv_child, j, this));
+        mListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Toast.makeText(getApplicationContext(), "aa", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
     }
 
     public void loginClicked(View view){
 
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("하아아이",true);
+        this.startActivity(intent);
+    }
+    public void menuClicked(View view){
+        Intent intent = new Intent(this, MenuActivity.class);
+        this.startActivity(intent);
+    }
+
+    public void cafeFindClicked(View v){
+        Intent intent = new Intent(this, CafeFindActivity.class);
         this.startActivity(intent);
     }
 }

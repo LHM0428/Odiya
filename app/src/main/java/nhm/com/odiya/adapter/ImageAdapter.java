@@ -24,7 +24,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-            return 12;
+        return 12;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ImageAdapter extends BaseAdapter {
         ImageView imageView;
         if(convertView == null){
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(50,50));
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         } else{
             imageView = (ImageView) convertView;
         }

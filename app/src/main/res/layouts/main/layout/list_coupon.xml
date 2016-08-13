@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/linearLayout_coupon">
+    >
     <ImageView
         android:id="@+id/iv_image"
         android:layout_width="40dp"
@@ -10,28 +10,16 @@
         android:layout_margin="5dp"
         android:src="@drawable/coupon_stamp"
         android:layout_gravity="center"/>
-    <TextView
-        android:id="@+id/tv_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dip"
-        android:layout_marginLeft="10dip"
-        android:layout_gravity="center" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/iv_arrow"
-        android:layout_gravity="center_vertical" />
 
     <GridView
-        android:layout_width="304dp"
-        android:layout_height="70dp"
+        android:layout_width="310dp"
+        android:layout_height="150dp"
         android:numColumns="6"
         android:padding="1dp"
         android:layout_margin="1dp"
         android:id="@+id/gv_child"
-        android:layout_weight="1.13">
+        android:layout_weight="1.13"
+        android:columnWidth="50dp">
     </GridView>
 
 </LinearLayout>

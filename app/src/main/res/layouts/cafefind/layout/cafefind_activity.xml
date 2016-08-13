@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/mainLayout"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:weightSum="5">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/mainTheme"
+        android:id="@+id/linearLayout_cafeFind"
+        android:layout_gravity="center_horizontal|top">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_cafe"
+            android:background="#ffffff"
+            android:layout_margin="10dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="매장 찾기"
+            android:textSize="45dp"
+            android:textColor="#ffffff"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:id="@+id/linearLayout_cafeSearch"
+        android:layout_below="@+id/linearLayout_cafeFind"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_search"
+            android:hint="지역에 있는 카페를 검색합니다."
+            android:gravity="center"
+            android:layout_margin="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_search"
+            android:layout_marginTop="10dp"
+            android:id="@+id/iv_search"
+            />
+
+
+    </LinearLayout>
+
+    <com.nhn.android.maps.NMapView android:id="@+id/mapView"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:text="@string/hello"
+        />
+</LinearLayout>
