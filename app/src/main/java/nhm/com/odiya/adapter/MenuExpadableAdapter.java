@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.logging.StreamHandler;
@@ -30,15 +32,18 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
     private ArrayList<ArrayList<LinearLayout>> childList = null;
     private LayoutInflater inflater = null;
     private Context c;
+    private ArrayList<String[]> menuList=null;
     private ViewHolder viewHolder = null;
+    int length=0,convertLeng=0;
 
 
-    public MenuExpadableAdapter(Context c, ArrayList<String> groupList, ArrayList<ArrayList<LinearLayout>> childList){
+    public MenuExpadableAdapter(Context c, ArrayList<String> groupList, ArrayList<ArrayList<LinearLayout>> childList, ArrayList<String[]> menuList){
         super();
         this.c = c;
         this.inflater = LayoutInflater.from(c);
         this.groupList = groupList;
         this.childList = childList;
+        this.menuList = menuList;
         //System.out.println("groupList : "+groupList.size());
        // System.out.println("childList : "+childList.size());
     }
@@ -58,8 +63,8 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        System.out.println("getChildrenCount : " + childList.get(groupPosition).size());
-        return childList.get(groupPosition).size();
+      //  System.out.println("getChildrenCount : " + childList.get(groupPosition).size());
+        return menuList.get(groupPosition).length;
     }
 
     @Override
@@ -107,8 +112,14 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
 
         if(isExpanded){
             viewHolder.menuImg.setBackgroundColor(Color.GREEN);
+            String[] arr = menuList.get(groupPosition);
+            convertLeng=0;
+            length = arr.length;
+            System.out.println("menuList Sise ; "+length);
         }else{
             viewHolder.menuImg.setBackgroundColor(Color.RED);
+            length=0;
+
         }
 
         viewHolder.menuTv.setText((String)getGroup(groupPosition));
@@ -119,23 +130,19 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         View v  = convertView;
-      //  System.out.println("getChildView1");
         if(v == null){
-          //  System.out.println("getChildView2");
             viewHolder = new ViewHolder();
             v = inflater.inflate(R.layout.menu_content, null);
             viewHolder.contentLayout = (LinearLayout) v.findViewById(R.id.contentLayout);
+            viewHolder.contentTv = (TextView)v.findViewById(R.id.contentTv);
             v.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)v.getTag();
         }
 
-      //  viewHolder.contentLayout.setTag();
-
-
-
-
-
+            if(convertLeng<length) {
+                viewHolder.contentTv.setText(menuList.get(groupPosition)[convertLeng++].toString());
+            }
 
         return v;    }
 
@@ -143,4 +150,18 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+    public int getMenuListSize(int groupPosition){
+        return menuList.get(groupPosition).length;
+    }
+    public String[] getMenuList(int groupPosition){
+        return menuList.get(groupPosition);
+    }
+
+    public void childListChange( ArrayList<ArrayList<LinearLayout>> childList){
+        this.childList = childList;
+    }
+
+
 }
+
