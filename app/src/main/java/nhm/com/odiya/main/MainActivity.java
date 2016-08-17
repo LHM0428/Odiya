@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         vf_event.setInAnimation(showIn);
         // [ 오른쪽으로 슬라이딩 되며 퇴장한다 ]
         vf_event.setOutAnimation(this, android.R.anim.slide_out_right);
-
         // 1.5초 간격으로 ViewFilpper의 view를 자동 교체
         vf_event.setFlipInterval(1500);
         vf_event.startFlipping();

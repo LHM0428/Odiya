@@ -16,6 +16,7 @@
 package nhm.com.odiya.utils.navermap;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +45,11 @@ public class NMapCalloutCustomOverlayView extends NMapCalloutOverlayView {
 		mCalloutText = (TextView)mCalloutView.findViewById(R.id.callout_text);
 		mRightArrow = findViewById(R.id.callout_rightArrow);
 
-		mCalloutView.setOnClickListener(callOutClickListener);
+		mCalloutView.setBackgroundColor(getResources().getColor(R.color.transparent));
+		mCalloutText.setTextColor(getResources().getColor(R.color.mainTheme));
+		mCalloutText.setLines(3);
 
+		mCalloutView.setOnClickListener(callOutClickListener);
 		mCalloutText.setText(item.getTitle());
 
 		if (item instanceof NMapPOIitem) {

@@ -15,6 +15,8 @@
  */
 package nhm.com.odiya.utils.navermap;
 
+import nhm.com.odiya.R;
+
 /**
  * Wrapper class representing POI flag types on map view.
  * 
