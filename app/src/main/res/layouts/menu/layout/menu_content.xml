@@ -11,14 +11,55 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center"
-        android:id="@+id/contentMenu">
+        android:id="@+id/contentMenu"
+        android:gravity="left|center">
 
-        <TextView
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/checkBox"
+            android:checked="false"
             android:text="아메리카노"
-            android:id="@+id/contentTv" />
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:focusableInTouchMode="true"
+            android:focusable="false" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:id="@+id/amountMenu"
+            android:visibility="invisible">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="-"
+                android:id="@+id/button"
+                android:textSize="30dp"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:text="0"
+                android:layout_gravity="center_vertical" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="+"
+                android:id="@+id/button2"
+                android:textSize="30dp"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

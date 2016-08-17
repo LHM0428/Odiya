@@ -2,24 +2,17 @@ package nhm.com.odiya.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.GridView;
-import android.widget.ImageButton;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.logging.StreamHandler;
 
 import nhm.com.odiya.R;
 
@@ -29,41 +22,42 @@ import nhm.com.odiya.R;
 public class MenuExpadableAdapter extends BaseExpandableListAdapter{
 
     private ArrayList<String> groupList = null;
-    private ArrayList<ArrayList<LinearLayout>> childList = null;
+    private Object[][] menuParent = null;
+    private ArrayList<String> menuChild = null;
+
+    private ArrayList<String> menuNameList = null;
+    private Object[] childList = null;
     private LayoutInflater inflater = null;
     private Context c;
     private ArrayList<String[]> menuList=null;
     private ViewHolder viewHolder = null;
-    int length=0,convertLeng=0;
 
-
-    public MenuExpadableAdapter(Context c, ArrayList<String> groupList, ArrayList<ArrayList<LinearLayout>> childList, ArrayList<String[]> menuList){
+    public MenuExpadableAdapter(Context c, ArrayList<String> groupList, Object[] childList, ArrayList<String[]> menuList) {
         super();
         this.c = c;
         this.inflater = LayoutInflater.from(c);
         this.groupList = groupList;
         this.childList = childList;
         this.menuList = menuList;
-        //System.out.println("groupList : "+groupList.size());
-       // System.out.println("childList : "+childList.size());
+        menuParent = new String[groupList.size()][15];
     }
-
     class ViewHolder{
         public ImageView menuImg;
         TextView menuTv,contentTv;
         LinearLayout contentLayout, menuGroupLayout,contentMenu;
+        CheckBox checkBox;
     }
 
 
     @Override
     public int getGroupCount() {
-        System.out.println("getGroupCont : " + groupList.size());
         return groupList.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-      //  System.out.println("getChildrenCount : " + childList.get(groupPosition).size());
+        ArrayList<CheckBox> arr =  (ArrayList<CheckBox>) childList[groupPosition];
+        System.out.println("사이즈 : "+ menuList.get(groupPosition).length);
         return menuList.get(groupPosition).length;
     }
 
@@ -74,7 +68,9 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return childList.get(groupPosition).get(childPosition);
+        ArrayList<CheckBox> arr =  (ArrayList<CheckBox>)childList[groupPosition];
+
+        return arr.get(childPosition);
     }
 
     @Override
@@ -95,71 +91,110 @@ public class MenuExpadableAdapter extends BaseExpandableListAdapter{
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View v = convertView;
-       // View menuV = inflater.inflate(R.layout.menu_main, parent, false);
 
         if(v == null){
             //Toast.makeText(c, "getGroupBView호출 v==null",Toast.LENGTH_LONG).show();
             viewHolder = new ViewHolder();
             v = inflater.inflate(R.layout.menu_group_list,parent,false);
-              viewHolder.menuGroupLayout = (LinearLayout) v.findViewById(R.id.menuGroupLayout);
-              viewHolder.menuImg=(ImageView) v.findViewById(R.id.menuImg);
-              viewHolder.menuTv=(TextView) v.findViewById(R.id.menuTv);
+            viewHolder.menuTv = (TextView) v.findViewById(R.id.menuTv);
+            viewHolder.menuImg = (ImageView) v.findViewById(R.id.menuProImg);
+
 
             v.setTag(viewHolder);
         }else{
+
             viewHolder = (ViewHolder)v.getTag();
         }
 
+        viewHolder.menuTv.setText(groupList.get(groupPosition));
+
+
         if(isExpanded){
-            viewHolder.menuImg.setBackgroundColor(Color.GREEN);
-            String[] arr = menuList.get(groupPosition);
-            convertLeng=0;
-            length = arr.length;
-            System.out.println("menuList Sise ; "+length);
+            viewHolder.menuImg.setBackgroundColor(Color.BLUE);
         }else{
-            viewHolder.menuImg.setBackgroundColor(Color.RED);
-            length=0;
-
+            viewHolder.menuImg.setBackgroundColor(Color.WHITE);
         }
-
-        viewHolder.menuTv.setText((String)getGroup(groupPosition));
 
         return v;
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        View v  = convertView;
-        if(v == null){
+    public View getChildView(final int groupPosition, final int childPosition, final boolean isLastChild, final View convertView, final ViewGroup parent) {
+        View v = convertView;
+        if (v == null) {
             viewHolder = new ViewHolder();
             v = inflater.inflate(R.layout.menu_content, null);
-            viewHolder.contentLayout = (LinearLayout) v.findViewById(R.id.contentLayout);
-            viewHolder.contentTv = (TextView)v.findViewById(R.id.contentTv);
             v.setTag(viewHolder);
-        }else{
-            viewHolder = (ViewHolder)v.getTag();
+        } else {
+            viewHolder = (ViewHolder) v.getTag();
         }
 
-            if(convertLeng<length) {
-                viewHolder.contentTv.setText(menuList.get(groupPosition)[convertLeng++].toString());
+        viewHolder.checkBox = (CheckBox) v.findViewById(R.id.checkBox);
+
+
+          if(menuNameList==null){
+              menuNameList = new ArrayList<String>();
+           }
+
+        String[] arr = menuList.get(groupPosition);
+        viewHolder.checkBox.setText(arr[childPosition]+"");
+
+        if(menuParent[groupPosition][childPosition]!=null) {
+            int i = Integer.parseInt((String) menuParent[groupPosition][childPosition]);
+            if (i == 1) {
+                viewHolder.checkBox.setChecked(true);
+            }else {
+                viewHolder.checkBox.setChecked(false);
             }
+        }else{
+            viewHolder.checkBox.setChecked(false);
+        }
 
-        return v;    }
 
+       viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   CheckBox check = (CheckBox) v;
+                   String name =  menuList.get(groupPosition)[childPosition];
+                   if(check==null){
+                       return;
+                   }
+                   if(menuParent[groupPosition][childPosition]==null) {
+                       menuParent[groupPosition][childPosition]=1+"";
+                   }
+
+                   if(check.isChecked()){
+                       menuNameList.add(name);
+                       menuParent[groupPosition][childPosition]=1+"";
+                       Toast.makeText(c, name + " 선택", Toast.LENGTH_LONG).show();
+
+                   }else{
+                       menuParent[groupPosition][childPosition] = 0 + "";
+                       for (int i = 0; i < menuNameList.size(); i++) {
+                           if (menuNameList.get(i).equals(name)) {
+                               menuNameList.remove(i);
+                               Toast.makeText(c, name + "해제", Toast.LENGTH_LONG).show();
+                           }
+                       }
+                   }
+
+               }
+           });
+    return v;
+    }
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
 
-    public int getMenuListSize(int groupPosition){
-        return menuList.get(groupPosition).length;
-    }
-    public String[] getMenuList(int groupPosition){
-        return menuList.get(groupPosition);
+    public void checkClicked(View v){
+
+
+        System.out.println("옹클릭");
     }
 
-    public void childListChange( ArrayList<ArrayList<LinearLayout>> childList){
-        this.childList = childList;
+    public ArrayList<String> getMenuNameList(){
+        return menuNameList;
     }
 
 

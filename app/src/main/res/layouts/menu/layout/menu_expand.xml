@@ -4,19 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="nhm.com.odiya.menu.MenuActivity"
-    >
-    <ExpandableListView
-        android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/menuElv"
-        android:layout_below="@+id/vf_event"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
-        android:contextClickable="true"
-        android:clickable="true"
-        android:drawSelectorOnTop="false"
-        android:smoothScrollbar="false"
-        android:layout_above="@+id/linearLayout"
-        />
+        android:id="@+id/scrollView2" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <ExpandableListView
+            android:layout_width="match_parent"
+            android:layout_height="523dp"
+            android:id="@+id/menuElv"
+            android:layout_below="@+id/vf_event"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:contextClickable="true"
+            android:clickable="true"
+            android:drawSelectorOnTop="false"
+            android:smoothScrollbar="false"
+            android:layout_above="@+id/linearLayout"
+            />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주문하기"
+                android:id="@+id/oderBtn"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
